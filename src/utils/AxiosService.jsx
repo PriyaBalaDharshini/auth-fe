@@ -1,22 +1,22 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const AxiosService = axios.create({
-    baseURL: "http://localhost:8000",
+    baseURL: "https://auth-be-0fef.onrender.com",
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
-});
+})
+
 
 AxiosService.interceptors.request.use((config) => {
-    /* console.log(config); */
-    const token = sessionStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = token ? `Bearer${token}` : null;
-        return config
-    }
-}, (error) => {
+    console.log(config)
+    const token = sessionStorage.getItem('token')
+    if (config.authenticate && token)
+        config.headers.Authorization = `Bearer ${token}`
 
-    return Promise.reject(error)
-});
+    return config
+}, (error) => {
+    return Promise.reject(error);
+})
 
 export default AxiosService

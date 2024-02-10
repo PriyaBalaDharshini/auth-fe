@@ -1,15 +1,16 @@
 const ApiRoutes = {
     SIGN_IN: {
-        path: "/user/login",
-        authentication: false
+        path: '/user/login',
+        authenticate: false
     },
     SIGN_UP: {
-        path: "/user/createUser",
-        authentication: false
+        path: '/user/createUser',
+        authenticate: false
     },
     GET_USERS: {
-        path: "/user/;id",
-        authentication: true
+        path: '/user',
+        authenticate: true
     }
-};
-export default ApiRoutes;
+}
+
+export default ApiRoutes

@@ -1,29 +1,32 @@
-import Signin from "../components/Signin.jsx";
-import Signup from "../components/Signup.jsx";
-import UserDashboard from "../components/UserDashboard.jsx";
-import AdminDashboard from "../components/AdminDashboard.jsx";
+import SignIn from '../components/Signin'
+import SignUp from '../components/Signup'
+import AdminDashboard from '../components/AdminDashboard'
+import UserDashboard from '../components/UserDashboard'
+import AdminProtectedRoute from './AdminProtectedRoute'
+import UserProtectedRoute from './UserProtectedRoute'
+import { Navigate } from 'react-router-dom'
 
 const AppRoutes = [
     {
-        path: "/",
-        element: <Signin />
+        path: '/',
+        element: <SignIn />
     },
     {
-        path: "/signup",
-        element: <Signup />
+        path: '/signup',
+        element: <SignUp />
     },
     {
-        path: "/user",
-        element: <UserDashboard />
+        path: '/admin',
+        element: <AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>
     },
     {
-        path: "/admin",
-        element: <AdminDashboard />
+        path: '/user',
+        element: <UserProtectedRoute><UserDashboard /></UserProtectedRoute>
     },
     {
-        path: "/*",
-        element: <Navigator to='/' />
+        path: '/*',
+        element: <Navigate to='/' />
     }
-];
+]
 
-export default AppRoutes;
+export default AppRoutes
